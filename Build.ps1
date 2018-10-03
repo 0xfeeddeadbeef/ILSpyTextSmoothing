@@ -27,7 +27,7 @@ New-Item -Path "$env:APPVEYOR_BUILD_FOLDER\lib\" -ItemType Directory
 
 Expand-Archive -Path $Local:ZipPath -DestinationPath "$env:APPVEYOR_BUILD_DIR\lib\" -Force -ErrorAction Stop
 
-$Local:CSProj = "$env:APPVEYOR_BUILD_DIR\ILSpyTextSmoothing\ILSpyTextSmoothing-CI.csproj"
+$Local:CSProj = "$env:APPVEYOR_BUILD_DIR\ILSpyTextSmoothing\ILSpyTextSmoothing\ILSpyTextSmoothing-CI.csproj"
 
 ((Get-Content -Path $Local:CSProj -Raw -Encoding UTF8) -replace '%PATH_ICSharpCode.AvalonEdit.dll%',"$env:APPVEYOR_BUILD_DIR\lib\ICSharpCode.AvalonEdit.dll") | Set-Content -Path $Local:CSProj -Encoding UTF8
 ((Get-Content -Path $Local:CSProj -Raw -Encoding UTF8) -replace '%PATH_ILSpy.exe%',"$env:APPVEYOR_BUILD_DIR\lib\ILSpy.exe") | Set-Content -Path $Local:CSProj -Encoding UTF8
