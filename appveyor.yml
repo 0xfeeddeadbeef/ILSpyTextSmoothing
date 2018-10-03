@@ -1,0 +1,36 @@
+﻿image: Visual Studio 2017
+
+branches:
+  only:
+    - master
+
+skip_tags: true
+max_jobs: 1
+
+init:
+  - git config --global core.autocrlf false
+
+shallow_clone: true
+
+environment:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  GITHUB_API_TOKEN:
+    secure: uSAWwQ1dP/pvqqTxqyqphIP8c1gZFvc4BKudT6ZWKCERPGFiMaO0Si3zeh++hXyJ
+
+matrix:
+  fast_finish: true
+
+cache:
+  - packages -> **\packages.config
+  - '%LocalAppData%\NuGet\Cache'
+  - '%LocalAppData%\NuGet\v3-cache'
+
+install:
+  - ps: & "$env:APPVEYOR_BUILD_DIR\Build.ps1"
+
+build_script:
+  - cmd: dotnet.exe build .\ILSpyTextSmoothing\ILSpyTextSmoothing-CI.csproj
+
+artifacts:
+  - path: bin\**\*.Plugin.dll
+    name: Plugin
