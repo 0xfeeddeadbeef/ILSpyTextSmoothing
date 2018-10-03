@@ -26,7 +26,7 @@ cache:
   - '%LocalAppData%\NuGet\v3-cache'
 
 install:
-  - ps: & "$env:APPVEYOR_BUILD_DIR\Build.ps1"
+  - cmd: powershell.exe -File Build.ps1
 
 build_script:
   - cmd: dotnet.exe build .\ILSpyTextSmoothing\ILSpyTextSmoothing-CI.csproj
