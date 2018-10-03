@@ -23,16 +23,15 @@ matrix:
   fast_finish: true
 
 cache:
-  - packages -> **\packages.config
   - '%LocalAppData%\NuGet\Cache'
   - '%LocalAppData%\NuGet\v3-cache'
 
 install:
-  - cmd: powershell.exe -File Build.ps1
+  - cmd: powershell.exe -NoProfile -NonInteractive -NoLogo -File Build.ps1
 
 build_script:
-  - cmd: dotnet.exe build C:\Projects\ILSpyTextSmoothing\ILSpyTextSmoothing\ILSpyTextSmoothing-CI.csproj
+  - cmd: dotnet.exe build -c Release C:\Projects\ILSpyTextSmoothing\ILSpyTextSmoothing\ILSpyTextSmoothing-CI.csproj
 
 artifacts:
-  - path: bin\**\*.Plugin.dll
+  - path: C:\Projects\ILSpyTextSmoothing\ILSpyTextSmoothing\bin\Release\net46\ILSpyTextSmoothing.Plugin.dll
     name: Plugin
