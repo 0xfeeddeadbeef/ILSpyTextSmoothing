@@ -13,7 +13,7 @@ $Local:RequestHeaders = @{
 }
 
 $Local:LatestRelease = Invoke-RestMethod -Method Get -UseBasicParsing -Uri $Local:GitHub -Headers $Local:RequestHeaders -ContentType 'application/json'
-$Local:LatestRelease.assets |
+$Local:Asset = $Local:LatestRelease.assets |
     Where-Object -FilterScript { ($_.content_type -eq 'application/x-zip-compressed') -and ($_.name -like '*zip') } |
     Select-Object -First 1
 
